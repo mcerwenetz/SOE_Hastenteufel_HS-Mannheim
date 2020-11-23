@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>492</y>
+      <w>420</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Bank
+--
+-List&lt;Konto&gt; : kontenliste
+--
+-bool : valiediereKonto(String kontonummer, String pin)
++Bank : Bank(void)
++int: berechneGebuehrinProzent()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>756</y>
+      <w>276</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>EigeneBank
+--
++int: berechneGebuehrinProzent()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>756</y>
+      <w>276</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Fremdbank
+--
++int: berechneGebuehrinProzent()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>756</y>
+      <w>276</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>FremdbankAusland
+--
++int: berechneGebuehrinProzent()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>600</y>
+      <w>192</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>600</y>
+      <w>72</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;40.0;70.0;40.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>600</y>
+      <w>276</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;210.0;70.0;210.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>216</y>
+      <w>312</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Geldautomat
+--
+-Hashmap&lt;Integer, Integer&gt; kapazität
+--
++Double kontostandAnsehen()
++Void : geldAuszahlen()
++Void : beenden()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>384</y>
+      <w>252</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Konto
+--
+-String : kontoinhaber
+-String : kontonummer
+-Hashmap : zugangsdaten&lt;String kontoNr, String pin&gt;
+-Double : kontostand
+-Boolean : aktiv
+--
++Hashmap : getCredentials()
++Double : getKontostand()
++String : getKontoinhaber()
++String : getKontonummer()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>540</y>
+      <w>288</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>324</y>
+      <w>36</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+</diagram>
