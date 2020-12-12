@@ -11,9 +11,9 @@ public class Konto_testen {
         System.out.println(konto.getKontonummer());
         System.out.println(konto.getPin());
         System.out.println(konto.getKontostand());
-        System.out.println(konto.getAktiv());
+        System.out.println(konto.getIsaktiv());
 
-        konto.setAktiv(false);
+        konto.setIsaktiv(false);
 
         System.out.println(konto.toString());
 

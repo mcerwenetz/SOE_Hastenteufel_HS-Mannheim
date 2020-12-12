@@ -32,12 +32,12 @@ public class Konto{
         return kontostand;
     }
 
-    public Boolean getAktiv() {
+    public Boolean getIsaktiv() {
         return isaktiv;
     }
 
-    public void setAktiv(Boolean aktiv) {
-        this.isaktiv = aktiv;
+    public void setIsaktiv(Boolean isaktiv) {
+        this.isaktiv = isaktiv;
     }
 
     @Override
