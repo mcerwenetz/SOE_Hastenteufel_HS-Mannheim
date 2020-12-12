@@ -22,4 +22,9 @@ class Bank{
     public List<Konto> getKontoliste() {
         return kontoliste;
     }
+
+    @Override
+    public String toString() {
+        return "Bank [kontoliste=" + kontoliste + "]" + "\n";
+    }
 }
