@@ -36,7 +36,6 @@ public class Konto{
         return true;
     }
 
-
     public Double getKontostand() {
         return kontostand;
     }
