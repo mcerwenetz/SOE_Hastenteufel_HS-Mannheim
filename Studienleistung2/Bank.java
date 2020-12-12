@@ -19,8 +19,7 @@ class Bank{
         return false;
     }
 
-
-    
-
-
+    public List<Konto> getKontoliste() {
+        return kontoliste;
+    }
 }
