@@ -1,7 +1,5 @@
 package Studienleistung2;
 
-import java.util.HashMap;
-
 public class Konto{
 
     private final String kontoinhaber;
