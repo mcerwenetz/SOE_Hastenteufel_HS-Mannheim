@@ -33,6 +33,7 @@ public class Konto{
         if ((kontostand-betrag) < 0){
             return false;
         }
+        kontostand-=betrag;
         return true;
     }
 

@@ -17,6 +17,9 @@ public class Konto_testen {
 
         System.out.println(konto.toString());
         System.out.println(konto.abbuchen(1500.00));
+        System.out.println(konto.getKontostand());
+        System.out.println(konto.abbuchen(500.00));
+        System.out.println(konto.getKontostand());
 
 
     }
