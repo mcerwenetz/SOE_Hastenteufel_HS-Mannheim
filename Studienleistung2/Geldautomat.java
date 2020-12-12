@@ -8,7 +8,7 @@ public class Geldautomat {
         return 0.0;
     }
 
-    public boolean geldAuszahlen(GeldAuszahung){
+    public boolean geldAuszahlen(Geldauszahlung geldauszahlung){
         return false;
     }
 
