@@ -16,6 +16,7 @@ public class Konto_testen {
         konto.setIsaktiv(false);
 
         System.out.println(konto.toString());
+        System.out.println(konto.abbuchen(1500.00));
 
 
     }

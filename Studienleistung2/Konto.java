@@ -5,7 +5,7 @@ public class Konto{
     private final String kontoinhaber;
     private final String kontonummer;
     private final String pin;
-    private final Double kontostand;
+    protected Double kontostand;
     protected Boolean isaktiv;
 
     public Konto(String kontoinhaber,String kontonummer,String pin,Double kontostand,Boolean aktiv){
@@ -27,6 +27,15 @@ public class Konto{
     public String getPin() {
         return pin;
     }
+
+    public boolean abbuchen(Double betrag){
+
+        if ((kontostand-betrag) < 0){
+            return false;
+        }
+        return true;
+    }
+
 
     public Double getKontostand() {
         return kontostand;
