@@ -1,17 +1,15 @@
-import java.util.HashMap;
-
 public class Konto{
 
     private final String kontoinhaber;
     private final String kontonummer;
-    private final HashMap<String,String> zugangsdaten;
+    private final String pin;
     private final Double kontostand;
     protected Boolean isaktiv;
 
-    public Konto(String kontoinhaber,String kontonummer,HashMap<String,String> zugangsdaten,Double kontostand,Boolean aktiv){
+    public Konto(String kontoinhaber,String kontonummer,String pin,Double kontostand,Boolean aktiv){
         this.kontoinhaber = kontoinhaber;
         this.kontonummer = kontonummer;        
-        this.zugangsdaten = zugangsdaten;
+        this.pin = pin;
         this.kontostand = kontostand;
         this.isaktiv = aktiv;
     }
@@ -24,8 +22,8 @@ public class Konto{
         return kontonummer;
     }
 
-    public HashMap<String, String> getZugangsdaten() {
-        return zugangsdaten;
+    public String getPin() {
+        return pin;
     }
 
     public Double getKontostand() {
@@ -43,7 +41,7 @@ public class Konto{
     @Override
     public String toString() {
         return "Konto [aktiv=" + isaktiv + ", kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
-                + ", kontostand=" + kontostand + ", zugangsdaten=" + zugangsdaten + "]";
+                + ", kontostand=" + kontostand + ", zugangsdaten=" + pin + "]";
     }
 
     @Override
@@ -54,7 +52,7 @@ public class Konto{
         result = prime * result + ((kontoinhaber == null) ? 0 : kontoinhaber.hashCode());
         result = prime * result + ((kontonummer == null) ? 0 : kontonummer.hashCode());
         result = prime * result + ((kontostand == null) ? 0 : kontostand.hashCode());
-        result = prime * result + ((zugangsdaten == null) ? 0 : zugangsdaten.hashCode());
+        result = prime * result + ((pin == null) ? 0 : pin.hashCode());
         return result;
     }
 
@@ -87,10 +85,10 @@ public class Konto{
                 return false;
         } else if (!kontostand.equals(other.kontostand))
             return false;
-        if (zugangsdaten == null) {
-            if (other.zugangsdaten != null)
+        if (pin == null) {
+            if (other.pin != null)
                 return false;
-        } else if (!zugangsdaten.equals(other.zugangsdaten))
+        } else if (!pin.equals(other.pin))
             return false;
         return true;
     }
