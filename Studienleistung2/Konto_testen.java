@@ -1,13 +1,9 @@
-import java.util.HashMap;
+package Studienleistung2;
 
 public class Konto_testen {
 
     public static void main (String[] args){
 
-        HashMap<String,String> zugangsdaten = new HashMap<>();
-
-        zugangsdaten.put("DE1300123456","1234");
-        
         Konto konto = new Konto("Daniel Bender","DE1300123456","1234",1234.58,true);
 
         System.out.println(konto.toString());
