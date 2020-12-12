@@ -1,3 +1,5 @@
+package Studienleistung2;
+
 public enum GeldScheine{
     FIVE(5),
     TEN(10),
