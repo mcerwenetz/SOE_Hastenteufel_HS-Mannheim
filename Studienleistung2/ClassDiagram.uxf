@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>15</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>297</x>
-      <y>657</y>
-      <w>315</w>
-      <h>90</h>
+      <x>495</x>
+      <y>645</y>
+      <w>525</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>Bank
 --
@@ -15,16 +15,16 @@
 --
 -bool : valiediereKonto(String kontonummer, String pin)
 +Bank : Bank(void)
-+int: berechneGebuehrinProzent()</panel_attributes>
++int abstract: berechneGebuehrinProzent()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>171</x>
-      <y>864</y>
-      <w>207</w>
-      <h>45</h>
+      <x>285</x>
+      <y>990</y>
+      <w>345</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>EigeneBank
 --
@@ -34,10 +34,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>405</x>
-      <y>864</y>
-      <w>207</w>
-      <h>45</h>
+      <x>675</x>
+      <y>990</y>
+      <w>345</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>Fremdbank
 --
@@ -47,10 +47,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>864</y>
-      <w>207</w>
-      <h>45</h>
+      <x>1080</x>
+      <y>990</y>
+      <w>345</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>FremdbankAusland
 --
@@ -60,10 +60,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>270</x>
-      <y>738</y>
-      <w>144</w>
-      <h>144</h>
+      <x>450</x>
+      <y>780</y>
+      <w>240</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>140.0;10.0;140.0;90.0;10.0;90.0;10.0;140.0</additional_attributes>
@@ -71,10 +71,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>738</y>
-      <w>54</w>
-      <h>144</h>
+      <x>780</x>
+      <y>780</y>
+      <w>90</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0;40.0;80.0;40.0;140.0</additional_attributes>
@@ -82,10 +82,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>738</y>
-      <w>207</w>
-      <h>144</h>
+      <x>900</x>
+      <y>780</y>
+      <w>345</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0;210.0;80.0;210.0;140.0</additional_attributes>
@@ -93,10 +93,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>342</x>
-      <y>459</y>
-      <w>270</w>
-      <h>90</h>
+      <x>570</x>
+      <y>315</y>
+      <w>450</w>
+      <h>195</h>
     </coordinates>
     <panel_attributes>Geldautomat
 --
@@ -104,6 +104,7 @@
 --
 +Double kontostandAnsehen()
 +Boolean : geldAuszahlen(Geldauszahlung)
++Boolean : geldAuszahlen(int betrag)
 +Void : beenden()
 </panel_attributes>
     <additional_attributes/>
@@ -111,20 +112,19 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>774</x>
-      <y>576</y>
-      <w>315</w>
-      <h>171</h>
+      <x>1200</x>
+      <y>510</y>
+      <w>525</w>
+      <h>285</h>
     </coordinates>
     <panel_attributes>Konto
 --
 -String : kontoinhaber
 -String : kontonummer
--Hashmap : zugangsdaten&lt;String kontoNr, String pin&gt;
+-String : pin
 -Double : kontostand
 -Boolean : aktiv
 --
-+Hashmap : getCredentials()
 +Double : getKontostand()
 +String : getKontoinhaber()
 +String : getKontonummer()</panel_attributes>
@@ -133,32 +133,32 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>693</y>
-      <w>189</w>
-      <h>27</h>
+      <x>1005</x>
+      <y>705</y>
+      <w>225</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>450</x>
-      <y>540</y>
-      <w>27</w>
-      <h>135</h>
+      <x>750</x>
+      <y>495</y>
+      <w>45</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1071</x>
-      <y>279</y>
-      <w>234</w>
-      <h>90</h>
+      <x>1785</x>
+      <y>15</y>
+      <w>390</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>GeldKasette
 --
@@ -170,10 +170,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>153</x>
-      <y>270</y>
-      <w>261</w>
-      <h>90</h>
+      <x>255</x>
+      <y>0</y>
+      <w>435</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>Geldauszahlung
 --
@@ -185,10 +185,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>279</y>
-      <w>288</w>
-      <h>108</h>
+      <x>1155</x>
+      <y>15</y>
+      <w>480</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>&lt;&lt;IGeldKasette&gt;&gt;
 --
@@ -203,10 +203,10 @@ _+final Hashmap&lt;Geldschein, Integer&gt; initalBestand_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>972</x>
-      <y>306</y>
-      <w>117</w>
-      <h>27</h>
+      <x>1620</x>
+      <y>60</y>
+      <w>195</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
@@ -214,10 +214,10 @@ _+final Hashmap&lt;Geldschein, Integer&gt; initalBestand_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>333</x>
-      <y>351</y>
-      <w>153</w>
-      <h>126</h>
+      <x>555</x>
+      <y>135</y>
+      <w>255</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -226,10 +226,10 @@ _+final Hashmap&lt;Geldschein, Integer&gt; initalBestand_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>315</y>
-      <w>189</w>
-      <h>162</h>
+      <x>870</x>
+      <y>75</y>
+      <w>315</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
@@ -238,10 +238,10 @@ _+final Hashmap&lt;Geldschein, Integer&gt; initalBestand_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>405</x>
-      <y>306</y>
-      <w>306</w>
-      <h>27</h>
+      <x>675</x>
+      <y>60</y>
+      <w>510</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>320.0;10.0;10.0;10.0</additional_attributes>
@@ -250,9 +250,9 @@ _+final Hashmap&lt;Geldschein, Integer&gt; initalBestand_
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>468</y>
-      <w>234</w>
-      <h>90</h>
+      <y>330</y>
+      <w>390</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 Geldschein
@@ -265,10 +265,10 @@ Geldschein
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>225</x>
-      <y>495</y>
-      <w>135</w>
-      <h>27</h>
+      <x>375</x>
+      <y>375</y>
+      <w>225</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
