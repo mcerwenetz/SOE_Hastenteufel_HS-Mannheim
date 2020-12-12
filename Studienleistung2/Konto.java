@@ -6,14 +6,14 @@ public class Konto{
     private final String kontonummer;
     private final HashMap<String,String> zugangsdaten;
     private final Double kontostand;
-    protected Boolean aktiv;
+    protected Boolean isaktiv;
 
     public Konto(String kontoinhaber,String kontonummer,HashMap<String,String> zugangsdaten,Double kontostand,Boolean aktiv){
         this.kontoinhaber = kontoinhaber;
         this.kontonummer = kontonummer;        
         this.zugangsdaten = zugangsdaten;
         this.kontostand = kontostand;
-        this.aktiv = aktiv;
+        this.isaktiv = aktiv;
     }
 
     public String getKontoinhaber() {
@@ -33,16 +33,16 @@ public class Konto{
     }
 
     public Boolean getAktiv() {
-        return aktiv;
+        return isaktiv;
     }
 
     public void setAktiv(Boolean aktiv) {
-        this.aktiv = aktiv;
+        this.isaktiv = aktiv;
     }
 
     @Override
     public String toString() {
-        return "Konto [aktiv=" + aktiv + ", kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
+        return "Konto [aktiv=" + isaktiv + ", kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
                 + ", kontostand=" + kontostand + ", zugangsdaten=" + zugangsdaten + "]";
     }
 
@@ -50,7 +50,7 @@ public class Konto{
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((aktiv == null) ? 0 : aktiv.hashCode());
+        result = prime * result + ((isaktiv == null) ? 0 : isaktiv.hashCode());
         result = prime * result + ((kontoinhaber == null) ? 0 : kontoinhaber.hashCode());
         result = prime * result + ((kontonummer == null) ? 0 : kontonummer.hashCode());
         result = prime * result + ((kontostand == null) ? 0 : kontostand.hashCode());
@@ -67,10 +67,10 @@ public class Konto{
         if (getClass() != obj.getClass())
             return false;
         Konto other = (Konto) obj;
-        if (aktiv == null) {
-            if (other.aktiv != null)
+        if (isaktiv == null) {
+            if (other.isaktiv != null)
                 return false;
-        } else if (!aktiv.equals(other.aktiv))
+        } else if (!isaktiv.equals(other.isaktiv))
             return false;
         if (kontoinhaber == null) {
             if (other.kontoinhaber != null)
