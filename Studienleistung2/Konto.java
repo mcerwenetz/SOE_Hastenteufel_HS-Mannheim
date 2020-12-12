@@ -1,4 +1,3 @@
-package Studienleistung2;
 
 public class Konto{
 
@@ -37,7 +36,6 @@ public class Konto{
         return true;
     }
 
-
     public Double getKontostand() {
         return kontostand;
     }
@@ -52,8 +50,8 @@ public class Konto{
 
     @Override
     public String toString() {
-        return "Konto [aktiv=" + isaktiv + ", kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
-                + ", kontostand=" + kontostand + ", zugangsdaten=" + pin + "]";
+        return "Konto [kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
+                + ", kontostand=" + kontostand + ", zugangsdaten=" + pin + ", aktiv=" + isaktiv + "]" + "\n";
     }
 
     @Override
