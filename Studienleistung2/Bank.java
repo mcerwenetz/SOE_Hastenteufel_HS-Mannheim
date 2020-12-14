@@ -1,6 +1,10 @@
 package Studienleistung2;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.graalvm.compiler.nodes.PiArrayNode;
 
 class Bank{
     private List<Konto> kontoliste;
@@ -10,9 +14,29 @@ class Bank{
         this.kontoliste=konten;
     }
 
-    private boolean validiereKonto(String kontonummer, String pin){
-        return false;
+    // Dieser Konstruktor erstellt ein testkonto
+    public Bank(){
+        this.kontoliste = this.generateRandomAccount();
     }
+
+    // Fehlercodes:
+    // 0 = kein fehler
+    // 1 = konto nicht gefunden
+    // 2 = konto gefunden aber falsche pin
+    // 3 = konto gefunden, richtige pin aber konto nicht aktiv
+    public int validiereKonto(String kontonummer, String pin){
+        return 0;
+    }
+
+    private List<Konto> generateRandomAccount(){
+        ArrayList<Konto> kontolist = new ArrayList<>();
+        String kontonummer = "DE00000001";
+        String pin = "1234";
+        Double kontostand = Double.valueOf("100");
+        kontolist.add(new Konto("Peter Müller", kontonummer, pin, kontostand, true));
+        return kontolist;
+	}
+
 
     public void creatrandacc(){
         
