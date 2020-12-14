@@ -43,13 +43,11 @@ public class Geldautomat {
     }
 
     public boolean geldAuszahlen(){
-        // Auswahl der Menüpunkte
-        // Authentifizierung
+        
         return false;
     }
 
     public void beenden(){
-        System.out.println("beende");
         this.keepRunning=false;
     }
 }
