@@ -1,6 +1,6 @@
 public class FremdbankAusland extends Bank {
 
-    int berechneGebuehrinProzent(){
+    public int berechneGebuehrinProzent(){
         return 0;
     }
     
