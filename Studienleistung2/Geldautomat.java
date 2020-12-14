@@ -94,7 +94,7 @@ public class Geldautomat {
     }
 
     public boolean geldAuszahlen(){
-        if(this.authentifizierung() && this.kontonummer != null && this.pin!=null){
+        if(this.authentifizierung() && this.kontonummer != null){
             System.out.println("Sie wurden Authentifiziert");
             // Betrag stückeln, Stückelung bei Geldkasette anfragen
             // Wenn alles wahr, dann true zurückgeben für "geld ausgezahlt"

@@ -1,21 +1,19 @@
 package Studienleistung2;
 
-import java.util.HashMap;
-
 public class Konto{
 
     private final String kontoinhaber;
     private final String kontonummer;
-    private final HashMap<String,String> zugangsdaten;
-    private final Double kontostand;
-    protected Boolean aktiv;
+    private final String pin;
+    protected Double kontostand;
+    protected Boolean isaktiv;
 
-    public Konto(String kontoinhaber,String kontonummer,HashMap<String,String> zugangsdaten,Double kontostand,Boolean aktiv){
+    public Konto(String kontoinhaber,String kontonummer,String pin,Double kontostand,Boolean aktiv){
         this.kontoinhaber = kontoinhaber;
         this.kontonummer = kontonummer;        
-        this.zugangsdaten = zugangsdaten;
+        this.pin = pin;
         this.kontostand = kontostand;
-        this.aktiv = aktiv;
+        this.isaktiv = aktiv;
     }
 
     public String getKontoinhaber() {
@@ -26,37 +24,46 @@ public class Konto{
         return kontonummer;
     }
 
-    public HashMap<String, String> getZugangsdaten() {
-        return zugangsdaten;
+    public String getPin() {
+        return pin;
+    }
+
+    public boolean abbuchen(Double betrag){
+
+        if ((kontostand-betrag) < 0){
+            return false;
+        }
+        kontostand-=betrag;
+        return true;
     }
 
     public Double getKontostand() {
         return kontostand;
     }
 
-    public Boolean getAktiv() {
-        return aktiv;
+    public Boolean getIsaktiv() {
+        return isaktiv;
     }
 
-    public void setAktiv(Boolean aktiv) {
-        this.aktiv = aktiv;
+    public void setIsaktiv(Boolean isaktiv) {
+        this.isaktiv = isaktiv;
     }
 
     @Override
     public String toString() {
-        return "Konto [aktiv=" + aktiv + ", kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
-                + ", kontostand=" + kontostand + ", zugangsdaten=" + zugangsdaten + "]";
+        return "Konto [kontoinhaber=" + kontoinhaber + ", kontonummer=" + kontonummer
+                + ", kontostand=" + kontostand + ", zugangsdaten=" + pin + ", aktiv=" + isaktiv + "]" + "\n";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((aktiv == null) ? 0 : aktiv.hashCode());
+        result = prime * result + ((isaktiv == null) ? 0 : isaktiv.hashCode());
         result = prime * result + ((kontoinhaber == null) ? 0 : kontoinhaber.hashCode());
         result = prime * result + ((kontonummer == null) ? 0 : kontonummer.hashCode());
         result = prime * result + ((kontostand == null) ? 0 : kontostand.hashCode());
-        result = prime * result + ((zugangsdaten == null) ? 0 : zugangsdaten.hashCode());
+        result = prime * result + ((pin == null) ? 0 : pin.hashCode());
         return result;
     }
 
@@ -69,10 +76,10 @@ public class Konto{
         if (getClass() != obj.getClass())
             return false;
         Konto other = (Konto) obj;
-        if (aktiv == null) {
-            if (other.aktiv != null)
+        if (isaktiv == null) {
+            if (other.isaktiv != null)
                 return false;
-        } else if (!aktiv.equals(other.aktiv))
+        } else if (!isaktiv.equals(other.isaktiv))
             return false;
         if (kontoinhaber == null) {
             if (other.kontoinhaber != null)
@@ -89,10 +96,10 @@ public class Konto{
                 return false;
         } else if (!kontostand.equals(other.kontostand))
             return false;
-        if (zugangsdaten == null) {
-            if (other.zugangsdaten != null)
+        if (pin == null) {
+            if (other.pin != null)
                 return false;
-        } else if (!zugangsdaten.equals(other.zugangsdaten))
+        } else if (!pin.equals(other.pin))
             return false;
         return true;
     }
