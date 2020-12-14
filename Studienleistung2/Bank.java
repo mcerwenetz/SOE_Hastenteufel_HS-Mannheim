@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.graalvm.compiler.nodes.PiArrayNode;
+
 class Bank{
     private List<Konto> kontoliste;
 
@@ -23,17 +25,38 @@ class Bank{
     // 2 = konto gefunden aber falsche pin
     // 3 = konto gefunden, richtige pin aber konto nicht aktiv
     public int validiereKonto(String kontonummer, String pin){
-        return 3;
+        return 0;
     }
 
     private List<Konto> generateRandomAccount(){
         ArrayList<Konto> kontolist = new ArrayList<>();
-        HashMap<String,String> zugangsdaten = new HashMap<>();
         String kontonummer = "DE00000001";
-        zugangsdaten.put(kontonummer, "1234");
+        String pin = "1234";
         Double kontostand = Double.valueOf("100");
-        kontolist.add(new Konto("Peter Müller", kontonummer,zugangsdaten, kontostand, true));
+        kontolist.add(new Konto("Peter Müller", kontonummer, pin, kontostand, true));
         return kontolist;
+	}
+
+
+    public void creatrandacc(){
+        
+        for (int i = 0;i<5;i++){
+            kontoliste.add(new Konto("Person"+i,"DE0000123"+i,"123"+i,1230.00+i,true));
+        }
+        for (int i = 0;i<3;i++){
+            kontoliste.add(new Konto("Person"+i,"DE1111000"+i,"123"+i,1230.00+i,true));
+        }
+        for (int i = 0;i<2;i++){
+            kontoliste.add(new Konto("Person"+i,"US1111081"+i,"123"+i,1230.00+i,true));
+        }
     }
 
+    public List<Konto> getKontoliste() {
+        return kontoliste;
+    }
+
+    @Override
+    public String toString() {
+        return "Bank [kontoliste=" + kontoliste + "]" + "\n";
+    }
 }
