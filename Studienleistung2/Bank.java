@@ -17,8 +17,13 @@ class Bank{
         this.kontoliste = this.generateRandomAccount();
     }
 
-    private boolean validiereKonto(String kontonummer, String pin){
-        return false;
+    // Fehlercodes:
+    // 0 = kein fehler
+    // 1 = konto nicht gefunden
+    // 2 = konto gefunden aber falsche pin
+    // 3 = konto gefunden, richtige pin aber konto nicht aktiv
+    public int validiereKonto(String kontonummer, String pin){
+        return 3;
     }
 
     private List<Konto> generateRandomAccount(){
