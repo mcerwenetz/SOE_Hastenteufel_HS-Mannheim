@@ -1,3 +1,5 @@
+package Studienleistung2;
+
 public class BankFactory {
     
     BankFactory(){

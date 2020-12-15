@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.graalvm.compiler.nodes.PiArrayNode;
 
 class Bank{
     private List<Konto> kontoliste;

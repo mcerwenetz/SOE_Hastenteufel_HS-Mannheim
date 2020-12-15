@@ -1,3 +1,5 @@
+package Studienleistung2;
+
 import Studienleistung2.Geldautomat;
 
 public class Main {
