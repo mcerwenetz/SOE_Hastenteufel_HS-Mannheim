@@ -1,3 +1,4 @@
+package Studienleistung2;
 
 public class Konto{
 
