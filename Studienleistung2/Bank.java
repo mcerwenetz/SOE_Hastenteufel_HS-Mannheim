@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-class Bank{
+abstract class Bank{
     private List<Konto> kontoliste;
 
     // Dieser Konstruktor bekommt Konten beim initialisieren übergeben
