@@ -10,7 +10,7 @@ public class Geldauszahlung {
     }
 
     public boolean addScheine(GeldScheine scheinArt, int anzahl){
-        if(this.scheine.putIfAbsent(scheinArt, 0) != null){
+        if(this.scheine.putIfAbsent(scheinArt, anzahl) != null){
             this.scheine.put(scheinArt, this.scheine.get(scheinArt) + anzahl);
         }
 
