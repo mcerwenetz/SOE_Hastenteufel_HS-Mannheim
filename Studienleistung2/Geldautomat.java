@@ -12,7 +12,7 @@ public class Geldautomat {
     private String kontonummer;
 
     public void startSession(){
-        this.bank = new Bank();
+        //this.bank = new Bank();
         this.fehlversuche = 0;
         this.scan = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();

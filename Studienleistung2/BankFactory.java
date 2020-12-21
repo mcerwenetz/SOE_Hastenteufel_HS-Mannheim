@@ -7,7 +7,7 @@ public class BankFactory {
     }
 
     public Bank createBank(String kontoNummer){
-        if(kontoNummer.startsWith("DE1234")){
+        if(kontoNummer.startsWith("DE0000")){
             //Eigene Bank
             Bank myBank = new EigeneBank();
             //myBank.addKonto(......);
