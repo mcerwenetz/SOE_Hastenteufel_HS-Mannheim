@@ -1,5 +1,6 @@
+package Studienleistung2;
 
-public class Konto{
+public class Konto {
 
     private final String kontoinhaber;
     private final String kontonummer;
