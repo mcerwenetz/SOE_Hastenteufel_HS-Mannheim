@@ -187,6 +187,7 @@ public class Geldautomat {
                 kasette.auszahlen(auszahlen);    
             }
         }
+        scan.close();
         return false;
     }
 
