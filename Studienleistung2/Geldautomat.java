@@ -190,7 +190,7 @@ public class Geldautomat {
                         
         while (auszahlen.getBetrag() <= 50){
             if (betrag > 50 && betrag%5==0 && betrag <= 500){
-                if (betrag > 300){}
+                if (betrag > 300){
                     betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
                 }
                 betrag = naechsterSchein(auszahlen, GeldScheine.FIFTY, betrag);
@@ -199,8 +199,9 @@ public class Geldautomat {
                 betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
             }
         kasette.auszahlen(auszahlen);  
+        }
     }
-
+    
     int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
         while(betrag-schein.getValue()>=0){
             auszahlung.addScheine(schein, 1);
