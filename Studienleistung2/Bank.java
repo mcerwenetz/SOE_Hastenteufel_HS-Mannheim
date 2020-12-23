@@ -12,10 +12,6 @@ abstract class Bank{
         this.kontoliste=konten;
     }
 
-    public Bank(){
-        this.kontoliste= new ArrayList<>();
-    }
-
     
     // Returncodes:
     // 0 = kein fehler
@@ -23,26 +19,26 @@ abstract class Bank{
     // 2 = konto gefunden aber falsche pin
     // 3 = konto gefunden, richtige pin aber konto nicht aktiv
     public int validiereKonto(String kontonummer, String pin){
-        for(Konto k : this.kontoliste){
-            if(k.getKontonummer().equals(kontonummer)){
-                // Konto gefunden
-                if(k.getPin().equals(pin)){
-                    //Pin richtig
-                    if(k.getIsaktiv()){
-                        //Konto aktiv
-                        return 0;
-                    }else{
-                        //Konto inaktiv
-                        return 3;
-                    }
+        Konto k = this.getKonto(kontonummer);
+        if(k != null){
+            // Konto gefunden
+            if(k.getPin().equals(pin)){
+                //Pin richtig
+                if(k.getIsaktiv()){
+                    //Konto aktiv
+                    return 0;
                 }else{
-                    //pin falsch
-                    return 2;
+                    //Konto inaktiv
+                    return 3;
                 }
+            }else{
+                //pin falsch
+                return 2;
             }
         }
-        //Konto nicht gefunden
-        return 1;
+        else{
+            return 1;
+        }
         
     }
 
