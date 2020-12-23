@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Fremdbank extends Bank {
 
-    Fremdbank(List<Konto> konten) {
-        super(konten);
+    Fremdbank() {
+        super();
         createacc();
     }
 

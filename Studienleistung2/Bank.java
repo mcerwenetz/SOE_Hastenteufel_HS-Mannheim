@@ -12,6 +12,12 @@ abstract class Bank{
     public Bank(List<Konto> konten){
         this.kontoliste=konten;
     }
+
+    public Bank(){
+        this.kontoliste= new ArrayList<>();
+    }
+
+    
     // Fehlercodes:
     // 0 = kein fehler
     // 1 = konto nicht gefunden
