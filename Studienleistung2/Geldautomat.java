@@ -80,7 +80,7 @@ public class Geldautomat {
                 if(this.fehlversuche == 3){
                     System.out.println("Zu viele Fehlversuche\n Sperre Konto");
                     this.fehlversuche=0;
-                    // bank.sperreKonto(kontonummer);
+                    bank.sperreKonto(kontonummer);
                     return false;
                 }
             }
