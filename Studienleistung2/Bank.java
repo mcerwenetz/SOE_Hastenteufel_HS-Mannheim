@@ -54,6 +54,15 @@ abstract class Bank{
         return kontoliste;
     }
 
+    public Konto getKonto(String kontoNummer){
+        for (Konto i : this.kontoliste){
+            if(i.getKontonummer() == kontoNummer){
+                return(i);
+            }
+        }
+        return(null);
+    }
+
     @Override
     public String toString() {
         return "Bank [kontoliste=" + kontoliste + "]" + "\n";

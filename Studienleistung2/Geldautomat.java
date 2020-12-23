@@ -1,5 +1,6 @@
 package Studienleistung2;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Geldautomat {
@@ -43,8 +44,10 @@ public class Geldautomat {
         }
     }
 
-    public double kontostandAnsehen(){
-        return 0;
+    public String kontostandAnsehen(){
+        double kontostand = this.bank.getKonto((String)this.kontonummer).getKontostand();
+        DecimalFormat df = new DecimalFormat("0.00");
+        return(df.format(kontostand));
     }
 
     private boolean authentifizierung(){
