@@ -4,12 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,8 +33,11 @@ public class TestStueckelung {
         GeldKasette kasette = new GeldKasette();
 
         automat.stückelung(55, kasette, auszahlen);
+        assertEquals(0,auszahlen.getSchein(GeldScheine.ONEHUNDRED));
         assertEquals(1,auszahlen.getSchein(GeldScheine.FIFTY));
-        assertEquals(1,auszahlen.getSchein(GeldScheine.FIVE));       
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TWENTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TEN)); 
+        assertEquals(1,auszahlen.getSchein(GeldScheine.FIVE));         
     }
     @Test
     public void sixtyfive(){
@@ -49,7 +46,9 @@ public class TestStueckelung {
         GeldKasette kasette = new GeldKasette();
 
         automat.stückelung(65, kasette, auszahlen);
+        assertEquals(0,auszahlen.getSchein(GeldScheine.ONEHUNDRED));
         assertEquals(1,auszahlen.getSchein(GeldScheine.FIFTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TWENTY));
         assertEquals(1,auszahlen.getSchein(GeldScheine.TEN)); 
         assertEquals(1,auszahlen.getSchein(GeldScheine.FIVE));       
     }
@@ -60,8 +59,11 @@ public class TestStueckelung {
         GeldKasette kasette = new GeldKasette();
 
         automat.stückelung(70, kasette, auszahlen);
+        assertEquals(0,auszahlen.getSchein(GeldScheine.ONEHUNDRED));
         assertEquals(1,auszahlen.getSchein(GeldScheine.FIFTY));
-        assertEquals(1,auszahlen.getSchein(GeldScheine.TWENTY));       
+        assertEquals(1,auszahlen.getSchein(GeldScheine.TWENTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TEN));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.FIVE));       
     }
     @Test
     public void twohundred(){
@@ -70,7 +72,11 @@ public class TestStueckelung {
         GeldKasette kasette = new GeldKasette();
 
         automat.stückelung(200, kasette, auszahlen);
-        assertEquals(4,auszahlen.getSchein(GeldScheine.FIFTY));       
+        assertEquals(0,auszahlen.getSchein(GeldScheine.ONEHUNDRED));
+        assertEquals(4,auszahlen.getSchein(GeldScheine.FIFTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TWENTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TEN));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.FIVE));       
     }
     @Test
     public void threehundred(){
@@ -79,7 +85,13 @@ public class TestStueckelung {
         GeldKasette kasette = new GeldKasette();
 
         automat.stückelung(300, kasette, auszahlen);
-        assertEquals(6,auszahlen.getSchein(GeldScheine.FIFTY));      
+        assertEquals(0,auszahlen.getSchein(GeldScheine.ONEHUNDRED));
+        assertEquals(6,auszahlen.getSchein(GeldScheine.FIFTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TWENTY));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.TEN));
+        assertEquals(0,auszahlen.getSchein(GeldScheine.FIVE));
+        
+              
     }
     @Test
     public void threehundredeightyfive(){
