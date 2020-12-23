@@ -8,13 +8,16 @@ public class Geldautomat {
     private boolean keepRunning;
     private Bank bank;
     private int fehlversuche;
-    private Scanner scan;
+    private final Scanner scan;
     private String kontonummer;
+
+    public Geldautomat(){
+        this.scan = new Scanner(System.in);
+    }
 
     public void startSession(){
         //this.bank = new Bank();
         this.fehlversuche = 0;
-        this.scan = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
         sb.append("Willkommen bei der Q-Bank\n");
         sb.append("Wie kann ich ihnen helfen\n");
@@ -99,13 +102,12 @@ public class Geldautomat {
         // Betrag stückeln, Stückelung bei Geldkasette anfragen
         // Wenn alles wahr, dann true zurückgeben für "geld ausgezahlt"
         Geldauszahlung auszahlen = new Geldauszahlung();
-        final Scanner scan = new Scanner(System.in);
         GeldKasette kasette = new GeldKasette();
 
             System.out.println("Möchten Sie die Scheinart wählen oder eine Automatische Stückelung?\n");
             System.out.println("(1) Scheinart auswählen");
             System.out.println("(2) Automatische Stückelung\n");
-            String menuauswahl = scan.next();
+            String menuauswahl = this.scan.next();
 
             if (menuauswahl.equals("1")){
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
@@ -115,7 +117,7 @@ public class Geldautomat {
                 
                 while (auszahlen.getBetrag() < 500){
                     System.out.println("Betrag: " + auszahlen.getBetrag());
-                    scheinwahl = scan.nextInt();
+                    scheinwahl = this.scan.nextInt();
 
                     if (scheinwahl==1){
                         if ((auszahlen.getBetrag()+GeldScheine.FIVE.getValue())<=500){
@@ -174,7 +176,7 @@ public class Geldautomat {
                 
                 int betrag;
                 while (auszahlen.getBetrag() <= 50){
-                    betrag = scan.nextInt();
+                    betrag = this.scan.nextInt();
                     if (betrag > 50 && betrag%5==0 && betrag <= 500){
                         if (betrag > 300){}
                             betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
@@ -184,10 +186,9 @@ public class Geldautomat {
                         betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
                         betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
                     }
-                kasette.auszahlen(auszahlen);    
+                return kasette.auszahlen(auszahlen);
             }
         }
-        scan.close();
         return false;
     }
 
@@ -201,6 +202,7 @@ public class Geldautomat {
     
     public void beenden(){
         this.keepRunning=false;
+        this.scan.close();
     }
 
 }
