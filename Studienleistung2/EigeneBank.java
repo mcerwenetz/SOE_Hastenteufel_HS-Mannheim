@@ -4,8 +4,8 @@ import java.util.List;
 
 public class EigeneBank extends Bank {
 
-    EigeneBank(List<Konto> konten){
-        super(konten);
+    EigeneBank(){
+        super();
         createacc();
     }
     

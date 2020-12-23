@@ -1,26 +1,20 @@
 package Studienleistung2;
 
 public class BankFactory {
-    
-    BankFactory(){
-
-    }
 
     public Bank getBank(String kontoNummer){
         if(kontoNummer.startsWith("DE0000")){
             //Eigene Bank
-            Bank myBank = new EigeneBank(null);
-            //myBank.addKonto(......);
-            //myBank.addKonto(......);
+            Bank myBank = new EigeneBank();
             return myBank;
         }else if(kontoNummer.startsWith("DE")){
             //Fremdbank inland
-            Bank myBank = new Fremdbank(null);
+            Bank myBank = new Fremdbank();
             //konten hinzufügen
             return myBank;
         
         }else{
-            Bank myBank = new FremdbankAusland(null);
+            Bank myBank = new FremdbankAusland();
             //konten hinzfügen
             return myBank;
 
