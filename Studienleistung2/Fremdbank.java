@@ -1,10 +1,12 @@
 package Studienleistung2;
 
+import java.util.ArrayList;
 
 public class Fremdbank extends Bank {
 
     Fremdbank() {
         super();
+        super.kontoliste = new ArrayList<>();
         createacc();
     }
 

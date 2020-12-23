@@ -1,18 +1,15 @@
 package Studienleistung2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 abstract class Bank{
     protected List<Konto> kontoliste;
 
-    // Dieser Konstruktor bekommt Konten beim initialisieren übergeben
-    public Bank(List<Konto> konten){
-        this.kontoliste=konten;
-    }
+    public Bank(){
 
-    
+    }
+   
     // Returncodes:
     // 0 = kein fehler
     // 1 = konto nicht gefunden
