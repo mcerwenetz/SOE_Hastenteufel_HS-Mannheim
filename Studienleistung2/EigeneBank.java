@@ -1,6 +1,5 @@
 package Studienleistung2;
 
-import java.util.List;
 
 public class EigeneBank extends Bank {
 

@@ -7,6 +7,7 @@ public class Geldautomat {
 
     // private GeldKasette GeldKasette;
     private boolean keepRunning;
+    private BankFactory bankFactory;
     private Bank bank;
     private int fehlversuche;
     private final Scanner scan;
@@ -62,6 +63,8 @@ public class Geldautomat {
             String kontonummer = this.scan.next();
             System.out.println(pinEingabeDialog);
             String pin = this.scan.next();
+            this.bankFactory = new BankFactory();
+            this.bank = this.bankFactory.getBank(kontonummer);
             int valid = this.bank.validiereKonto(kontonummer, pin);
             if (valid == 0){
                 this.kontonummer = kontonummer;
