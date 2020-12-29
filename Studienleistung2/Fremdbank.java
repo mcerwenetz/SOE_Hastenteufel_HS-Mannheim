@@ -3,8 +3,7 @@ package Studienleistung2;
 import java.util.ArrayList;
 
 public class Fremdbank extends Bank {
-    
-    public Geldauszahlung geld;
+
 
     Fremdbank() {
         super();
