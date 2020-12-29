@@ -10,9 +10,9 @@ public class EigeneBank extends Bank {
         createacc();
     }
     
-
-    int berechneGebuehrinProzent(int betrag){
-        return betrag;
+    @Override
+    double berechneGebuehr(int betrag){
+        return 0.0;
     }
 
     void createacc(){

@@ -39,6 +39,8 @@ abstract class Bank{
         
     }
 
+    abstract double berechneGebuehr(int betrag);
+
     public List<Konto> getKontoliste() {
         return kontoliste;
     }
