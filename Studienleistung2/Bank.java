@@ -45,7 +45,7 @@ abstract class Bank{
 
     public Konto getKonto(String kontoNummer){
         for (Konto i : this.kontoliste){
-            if(i.getKontonummer() == kontoNummer){
+            if(i.getKontonummer().equals(kontoNummer)){
                 return(i);
             }
         }
