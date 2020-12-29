@@ -120,6 +120,7 @@ public class Geldautomat {
                 System.out.println("(1) 5€ Schein\n(2) 10€ Schein\n(3) 20€ Schein\n(4) 50€ Schein\n(5) 100€ Schein\n(0) Eingabe beenden");
                 System.out.println("Bsp.: Möchten Sie zwei 50€ Scheine, so wählen Sie zwei mal Menüpunkt 4");
                 int scheinwahl;
+                autoscheinwahl();
                 
                 while (auszahlen.getBetrag() < 500){
                     System.out.println("Betrag: " + auszahlen.getBetrag());
