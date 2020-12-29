@@ -1,12 +1,23 @@
 package Studienleistung2;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 
+//@ExtendWith(MyTestWatcher.class)
 public class TestStueckelung {
+
+    public TestStueckelung(){
+
+    }
   
     @Before 
 	public void setUp() {
@@ -96,4 +107,36 @@ public class TestStueckelung {
         assertEquals(1,auszahlen.getSchein(GeldScheine.TEN)); 
         assertEquals(1,auszahlen.getSchein(GeldScheine.FIVE));
     }
+
+    
+	public static class TestHelloWatcher extends TestWatcher {
+        @Override
+        protected void starting(Description description) {
+            String name = description.getMethodName();
+            System.out.format("Test: %s\n", name);
+        }
+        @Override
+        protected void succeeded(Description description) { 
+            String name = description.getMethodName();
+            System.out.format("Test: %s erfolgreich!\n\n", name);
+
+        }
+        protected void failed(Throwable e, Description description) {
+            String name = description.getMethodName();
+            System.out.format("Error: %s\n\n", name);                 
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
+        }
+    }
+
+	@Rule
+	public TestRule watcher = new TestHelloWatcher();
+
+	public static void main(String[] args) {
+		Result result = JUnitCore.runClasses(TestStueckelung.class);
+		for (Failure failure : result.getFailures()) {
+			System.out.println(failure.toString());
+		}
+		System.out.println(result.wasSuccessful());
+	}
 }

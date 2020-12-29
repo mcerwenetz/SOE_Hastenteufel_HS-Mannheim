@@ -180,6 +180,8 @@ public class Geldautomat {
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
                 System.out.println("Bitte geben Sie den gewünschten Betrag ein:");
                 stückelung(betrageingeben(),kasette,auszahlen);
+
+                kasette.auszahlen(auszahlen);  
             }
         }
         return false;
@@ -212,9 +214,6 @@ public class Geldautomat {
         betrag = naechsterSchein(auszahlen, GeldScheine.TWENTY, betrag);
         betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
         betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
-    
-        kasette.auszahlen(auszahlen);  
-        
     }
     
     int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
