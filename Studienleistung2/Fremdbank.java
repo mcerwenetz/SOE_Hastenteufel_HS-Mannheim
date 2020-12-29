@@ -11,9 +11,9 @@ public class Fremdbank extends Bank {
         createacc();
         
     }
-
-    int berechneGebuehrinProzent(int betrag){
-         return ((int) (betrag * 0.01));
+    @Override
+    double berechneGebuehr(int betrag){
+         return (betrag * 0.01);
     }
 
     void createacc(){

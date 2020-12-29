@@ -170,7 +170,19 @@ public class Geldautomat {
                             System.out.println("Betrag unter 50€ oder über 500€!");
                         }
                         else if(auszahlen.getBetrag()>=50){
-                            kasette.auszahlen(auszahlen);
+                            if(bank.berechneGebuehr(auszahlen.getBetrag()) > 0){
+                                System.out.format("Es fallen Gebühren in der Höhe von: %.2f€ an\n", bank.berechneGebuehr(auszahlen.getBetrag()));
+                                System.out.println("Durchführen?\n(1) Ja\n(2) Nein\n");
+                                String yn = this.scan.next();
+                                if(yn.equals("1")){
+                                    konto.abbuchen((double)auszahlen.getBetrag()+bank.berechneGebuehr(auszahlen.getBetrag()));
+                                    System.out.println("Neuer Kontostand:"+ konto.getKontostand());
+                                    kasette.auszahlen(auszahlen);
+                                }
+                                else{
+                                    System.out.println("Abbrechen...");
+                                }
+                            }
                             break;
                         }
                     }
@@ -179,8 +191,20 @@ public class Geldautomat {
             else if(menuauswahl.equals("2")){
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
                 System.out.println("Bitte geben Sie den gewünschten Betrag ein:");
-                int betrag = scan.nextInt();
-                stückelung(betrag,kasette,auszahlen);
+                stückelung(betrageingeben(),kasette,auszahlen);
+                if(bank.berechneGebuehr(auszahlen.getBetrag()) > 0){
+                    System.out.format("Es fallen Gebühren in der Höhe von: %.2f€ an\n", bank.berechneGebuehr(auszahlen.getBetrag()));
+                    System.out.println("Durchführen?\n(1) Ja\n(2) Nein\n");
+                    String yn = this.scan.next();
+                    if(yn.equals("1")){
+                        konto.abbuchen((double)auszahlen.getBetrag()+bank.berechneGebuehr(auszahlen.getBetrag()));
+                        System.out.println("Neuer Kontostand:"+ konto.getKontostand());
+                        kasette.auszahlen(auszahlen);
+                    }
+                    else{
+                        System.out.println("Abbrechen...");
+                    }
+                }
             }
         }
         return false;
