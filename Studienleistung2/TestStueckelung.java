@@ -1,14 +1,13 @@
 package Studienleistung2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 
 public class TestStueckelung {
-    
+  
     @Before 
 	public void setUp() {
         // ignore
@@ -18,7 +17,7 @@ public class TestStueckelung {
 	public void tearDown() {
         //ignore
     }
-    
+
     @Test
     public void fiftyfive(){
         Geldautomat automat = new Geldautomat();
@@ -82,9 +81,7 @@ public class TestStueckelung {
         assertEquals(6,auszahlen.getSchein(GeldScheine.FIFTY));
         assertEquals(0,auszahlen.getSchein(GeldScheine.TWENTY));
         assertEquals(0,auszahlen.getSchein(GeldScheine.TEN));
-        assertEquals(0,auszahlen.getSchein(GeldScheine.FIVE));
-        
-              
+        assertEquals(0,auszahlen.getSchein(GeldScheine.FIVE));            
     }
     @Test
     public void threehundredeightyfive(){
