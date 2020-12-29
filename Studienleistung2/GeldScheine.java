@@ -10,7 +10,7 @@ public enum GeldScheine{
 
     private int value;
 
-    private GeldScheine(final int value){
+    private GeldScheine(int value){
         this.value = value;
     }
 
