@@ -120,7 +120,6 @@ public class Geldautomat {
                 System.out.println("(1) 5€ Schein\n(2) 10€ Schein\n(3) 20€ Schein\n(4) 50€ Schein\n(5) 100€ Schein\n(0) Eingabe beenden");
                 System.out.println("Bsp.: Möchten Sie zwei 50€ Scheine, so wählen Sie zwei mal Menüpunkt 4");
                 int scheinwahl;
-                autoscheinwahl();
                 
                 while (auszahlen.getBetrag() < 500){
                     System.out.println("Betrag: " + auszahlen.getBetrag());
@@ -180,27 +179,42 @@ public class Geldautomat {
             else if(menuauswahl.equals("2")){
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
                 System.out.println("Bitte geben Sie den gewünschten Betrag ein:");
-                int betrag = scan.nextInt();
-                stückelung(betrag,kasette,auszahlen);
+                stückelung(betrageingeben(),kasette,auszahlen);
             }
         }
         return false;
     }
 
+    int betrageingeben(){
+        int betrag = scan.nextInt();
+        while (betrag < 50 || betrag > 500 || betrag%5!=0){
+            if (betrag < 50){
+                System.out.println("Betrag unter 50€!");
+            }
+            else if(betrag > 500){
+                System.out.println("Betrag über 500€!");
+            }
+            else if(betrag%5!=0){
+                System.out.println("Es gibt keine ungeraden Scheine!");
+            }
+            System.out.println("Bitte gültigen Betrag eingeben!");
+            betrag = scan.nextInt();
+        }
+        return betrag;
+    }
+
     void stückelung(int betrag, GeldKasette kasette,Geldauszahlung auszahlen){
                         
-        while (auszahlen.getBetrag() <= 50){
-            if (betrag > 50 && betrag%5==0 && betrag <= 500){
-                if (betrag > 300){
-                    betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
-                }
-                betrag = naechsterSchein(auszahlen, GeldScheine.FIFTY, betrag);
-                betrag = naechsterSchein(auszahlen, GeldScheine.TWENTY, betrag);
-                betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
-                betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
-            }
-        kasette.auszahlen(auszahlen);  
+        if (betrag > 300){
+            betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
         }
+        betrag = naechsterSchein(auszahlen, GeldScheine.FIFTY, betrag);
+        betrag = naechsterSchein(auszahlen, GeldScheine.TWENTY, betrag);
+        betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
+        betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
+    
+        kasette.auszahlen(auszahlen);  
+        
     }
     
     int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
