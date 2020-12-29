@@ -2,37 +2,66 @@ package Studienleistung2;
 
 import java.util.List;
 
-class Bank{
-    private List<Konto> kontoliste;
 
-    // Dieser Konstruktor bekommt Konten beim initialisieren übergeben
-    public Bank(List<Konto> konten){
-        this.kontoliste=konten;
+abstract class Bank{
+    protected List<Konto> kontoliste;
+
+    public Bank(){
+
     }
-
-    private boolean validiereKonto(String kontonummer, String pin){
-        return false;
-    }
-
-    public void creatrandacc(){
+   
+    // Returncodes:
+    // 0 = kein fehler
+    // 1 = konto nicht gefunden
+    // 2 = konto gefunden aber falsche pin
+    // 3 = konto gefunden, richtige pin aber konto nicht aktiv
+    public int validiereKonto(String kontonummer, String pin){
+        Konto k = this.getKonto(kontonummer);
+        if(k != null){
+            // Konto gefunden
+            if(k.getPin().equals(pin)){
+                //Pin richtig
+                if(k.getIsaktiv()){
+                    //Konto aktiv
+                    return 0;
+                }else{
+                    //Konto inaktiv
+                    return 3;
+                }
+            }else{
+                //pin falsch
+                return 2;
+            }
+        }
+        else{
+            return 1;
+        }
         
-        for (int i = 0;i<5;i++){
-            kontoliste.add(new Konto("Person"+i,"DE0000123"+i,"123"+i,1230.00+i,true));
-        }
-        for (int i = 0;i<3;i++){
-            kontoliste.add(new Konto("Person"+i,"DE1111000"+i,"123"+i,1230.00+i,true));
-        }
-        for (int i = 0;i<2;i++){
-            kontoliste.add(new Konto("Person"+i,"US1111081"+i,"123"+i,1230.00+i,true));
-        }
     }
 
     public List<Konto> getKontoliste() {
         return kontoliste;
     }
 
+    public Konto getKonto(String kontoNummer){
+        for (Konto i : this.kontoliste){
+            if(i.getKontonummer() == kontoNummer){
+                return(i);
+            }
+        }
+        return(null);
+    }
+
     @Override
     public String toString() {
         return "Bank [kontoliste=" + kontoliste + "]" + "\n";
     }
+
+	public void sperreKonto(String kontonummer) {
+        for(Konto k : this.kontoliste){
+            if(k.getKontonummer().equals(kontonummer)){
+                k.setIsaktiv(false);
+            }
+        }
+	}
 }
