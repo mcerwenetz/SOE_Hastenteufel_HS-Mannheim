@@ -11,8 +11,8 @@ public class EigeneBank extends Bank {
     }
     
 
-    int berechneGebuehrinProzent(){
-        return 0;
+    int berechneGebuehrinProzent(int betrag){
+        return betrag;
     }
 
     void createacc(){

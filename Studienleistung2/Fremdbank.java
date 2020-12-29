@@ -3,15 +3,18 @@ package Studienleistung2;
 import java.util.ArrayList;
 
 public class Fremdbank extends Bank {
+    
+    public Geldauszahlung geld;
 
     Fremdbank() {
         super();
         super.kontoliste = new ArrayList<>();
         createacc();
+        
     }
 
-    int berechneGebuehrinProzent(){
-        return 0;
+    int berechneGebuehrinProzent(int betrag){
+         return ((int) (betrag * 0.01));
     }
 
     void createacc(){
