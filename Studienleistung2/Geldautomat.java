@@ -36,7 +36,6 @@ public class Geldautomat {
                 kontostandAnsehen();
             }
             else if (menuepunktAuswahl.equals("2")){
-                System.out.println("Sie wollen Geld abheben?\n");
                 geldAuszahlen();
             }
             else if (menuepunktAuswahl.equals("0")){
@@ -49,20 +48,15 @@ public class Geldautomat {
         }
     }
 
-    public void kontostandAnsehen(){
-        if(this.authentifizierung() && this.kontonummer != null){
-            double kontostand = this.bank.getKonto((String)this.kontonummer).getKontostand();
-            DecimalFormat df = new DecimalFormat("0.00");
-            System.out.format("Sie haben %s € auf dem Konto.\n\n",df.format(kontostand));
-    
-        }
-        else{
-            System.out.println("Nicht authentifiziert!");
-        }
+    public String kontostandAnsehen(){
+        double kontostand = this.bank.getKonto((String)this.kontonummer).getKontostand();
+        DecimalFormat df = new DecimalFormat("0.00");
+        return(df.format(kontostand));
     }
 
     private boolean authentifizierung(){
-        StringBuilder geldAbhebenDialog = new StringBuilder("Geben Sie ihre Kontonumer ein\n");
+        StringBuilder geldAbhebenDialog = new StringBuilder("Sie wollen Geld abheben?\n");
+        geldAbhebenDialog.append("Geben Sie ihre Kontonumer ein\n");
         String pinEingabeDialog = "Bitte geben Sie ihre PIN ein";
         while(this.fehlversuche < 3){
             System.out.println(geldAbhebenDialog);
@@ -110,12 +104,11 @@ public class Geldautomat {
 
     public boolean geldAuszahlen(){
         if(this.authentifizierung() && this.kontonummer != null){
-            Konto konto = bank.getKonto(this.kontonummer);
-            System.out.println("Sie wurden Authentifiziert\n");
-            // Betrag stückeln, Stückelung bei Geldkasette anfragen
-            // Wenn alles wahr, dann true zurückgeben für "geld ausgezahlt"
-            Geldauszahlung auszahlen = new Geldauszahlung();
-            GeldKasette kasette = new GeldKasette();
+        System.out.println("Sie wurden Authentifiziert\n");
+        // Betrag stückeln, Stückelung bei Geldkasette anfragen
+        // Wenn alles wahr, dann true zurückgeben für "geld ausgezahlt"
+        Geldauszahlung auszahlen = new Geldauszahlung();
+        GeldKasette kasette = new GeldKasette();
 
             System.out.println("Möchten Sie die Scheinart wählen oder eine Automatische Stückelung?\n");
             System.out.println("(1) Scheinart auswählen");
@@ -177,8 +170,6 @@ public class Geldautomat {
                             System.out.println("Betrag unter 50€ oder über 500€!");
                         }
                         else if(auszahlen.getBetrag()>=50){
-                            konto.abbuchen((double)auszahlen.getBetrag());
-                            System.out.println("Neuer Kontostand:"+ konto.getKontostand());
                             kasette.auszahlen(auszahlen);
                             break;
                         }
@@ -188,42 +179,27 @@ public class Geldautomat {
             else if(menuauswahl.equals("2")){
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
                 System.out.println("Bitte geben Sie den gewünschten Betrag ein:");
-                stückelung(betrageingeben(),kasette,auszahlen);
-                konto.abbuchen((double)auszahlen.getBetrag());
-                System.out.println("Neuer Kontostand:"+ konto.getKontostand());
-                kasette.auszahlen(auszahlen);  
+                int betrag = scan.nextInt();
+                stückelung(betrag,kasette,auszahlen);
             }
         }
         return false;
     }
 
-    int betrageingeben(){
-        int betrag = scan.nextInt();
-        while (betrag < 50 || betrag > 500 || betrag%5!=0){
-            if (betrag < 50){
-                System.out.println("Betrag unter 50€!");
-            }
-            else if(betrag > 500){
-                System.out.println("Betrag über 500€!");
-            }
-            else if(betrag%5!=0){
-                System.out.println("Es gibt keine ungeraden Scheine!");
-            }
-            System.out.println("Bitte gültigen Betrag eingeben!");
-            betrag = scan.nextInt();
-        }
-        return betrag;
-    }
-
     void stückelung(int betrag, GeldKasette kasette,Geldauszahlung auszahlen){
                         
-        if (betrag > 300){
-            betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
+        while (auszahlen.getBetrag() <= 50){
+            if (betrag > 50 && betrag%5==0 && betrag <= 500){
+                if (betrag > 300){
+                    betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
+                }
+                betrag = naechsterSchein(auszahlen, GeldScheine.FIFTY, betrag);
+                betrag = naechsterSchein(auszahlen, GeldScheine.TWENTY, betrag);
+                betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
+                betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
+            }
+        kasette.auszahlen(auszahlen);  
         }
-        betrag = naechsterSchein(auszahlen, GeldScheine.FIFTY, betrag);
-        betrag = naechsterSchein(auszahlen, GeldScheine.TWENTY, betrag);
-        betrag = naechsterSchein(auszahlen, GeldScheine.TEN, betrag);
-        betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
     }
     
     int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
