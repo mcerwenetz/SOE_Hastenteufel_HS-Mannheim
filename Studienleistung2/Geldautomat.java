@@ -10,11 +10,11 @@ public class Geldautomat {
     private BankFactory bankFactory;
     private Bank bank;
     private int fehlversuche;
-    private final Scanner scan;
+    private final Scanner SCAN;
     private String kontonummer;
 
     public Geldautomat(){
-        this.scan = new Scanner(System.in);
+        this.SCAN = new Scanner(System.in);
     }
 
     public void startSession(){
@@ -30,7 +30,7 @@ public class Geldautomat {
         while(keepRunning){
             System.out.println(sb);
 
-            String menuepunktAuswahl = this.scan.next();
+            String menuepunktAuswahl = this.SCAN.next();
 
             if(menuepunktAuswahl.equals("1")){
                 kontostandAnsehen();
@@ -66,9 +66,9 @@ public class Geldautomat {
         String pinEingabeDialog = "Bitte geben Sie ihre PIN ein";
         while(this.fehlversuche < 3){
             System.out.println(geldAbhebenDialog);
-            String kontonummer = this.scan.next();
+            String kontonummer = this.SCAN.next();
             System.out.println(pinEingabeDialog);
-            String pin = this.scan.next();
+            String pin = this.SCAN.next();
             this.bankFactory = new BankFactory();
             this.bank = this.bankFactory.getBank(kontonummer);
             int valid = this.bank.validiereKonto(kontonummer, pin);
@@ -95,7 +95,7 @@ public class Geldautomat {
                 return false;
             }
             System.out.println("(1)Neuer Versuch\n(2)Beenden");
-            String auswahl = this.scan.next();
+            String auswahl = this.SCAN.next();
             if(auswahl.equals("1"))
             {
                 continue;
@@ -120,7 +120,7 @@ public class Geldautomat {
             System.out.println("Möchten Sie die Scheinart wählen oder eine Automatische Stückelung?\n");
             System.out.println("(1) Scheinart auswählen");
             System.out.println("(2) Automatische Stückelung\n");
-            String menuauswahl = this.scan.next();
+            String menuauswahl = this.SCAN.next();
 
             if (menuauswahl.equals("1")){
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
@@ -130,7 +130,7 @@ public class Geldautomat {
                 
                 while (auszahlen.getBetrag() < 500){
                     System.out.println("Betrag: " + auszahlen.getBetrag());
-                    scheinwahl = this.scan.nextInt();
+                    scheinwahl = this.SCAN.nextInt();
 
                     if (scheinwahl==1){
                         if ((auszahlen.getBetrag()+GeldScheine.FIVE.getValue())<=500){
@@ -180,7 +180,7 @@ public class Geldautomat {
                             if(bank.berechneGebuehr(auszahlen.getBetrag()) > 0){
                                 System.out.format("Es fallen Gebühren in der Höhe von: %.2f€ an\n", bank.berechneGebuehr(auszahlen.getBetrag()));
                                 System.out.println("Durchführen?\n(1) Ja\n(2) Nein\n");
-                                String yn = this.scan.next();
+                                String yn = this.SCAN.next();
                                 if(yn.equals("1")){
                                     konto.abbuchen((double)auszahlen.getBetrag()+bank.berechneGebuehr(auszahlen.getBetrag()));
                                     System.out.println("Neuer Kontostand:"+ konto.getKontostand());
@@ -199,26 +199,33 @@ public class Geldautomat {
                 System.out.println("\nDer Minimalbetrag liebt bei 50€, der Maximalbetrag bei 500€");
                 System.out.println("Bitte geben Sie den gewünschten Betrag ein:");
                 stückelung(betrageingeben(),kasette,auszahlen);
-                if(bank.berechneGebuehr(auszahlen.getBetrag()) > 0){
-                    System.out.format("Es fallen Gebühren in der Höhe von: %.2f€ an\n", bank.berechneGebuehr(auszahlen.getBetrag()));
+                //Gebühren fallen an -> Wirklich abbuchen?-Dialog
+                double gebuehren = bank.berechneGebuehr(auszahlen.getBetrag());
+                if(gebuehren > 0){
+                    System.out.format("Es fallen Gebühren in der Höhe von: %.2f€ an\n", gebuehren);
                     System.out.println("Durchführen?\n(1) Ja\n(2) Nein\n");
-                    String yn = this.scan.next();
+                    String yn = this.SCAN.next();
                     if(yn.equals("1")){
-                        konto.abbuchen((double)auszahlen.getBetrag()+bank.berechneGebuehr(auszahlen.getBetrag()));
+                        konto.abbuchen((double)auszahlen.getBetrag()+gebuehren);
                         System.out.println("Neuer Kontostand:"+ konto.getKontostand());
                         kasette.auszahlen(auszahlen);
                     }
                     else{
                         System.out.println("Abbrechen...");
                     }
+                //Keine Gebühren fallen an. Kein Dialog.
+                }else{
+                    konto.abbuchen((double)auszahlen.getBetrag());
+                    System.out.println(String.format("Neuer Kontostand: %.2f€", konto.getKontostand()));
+                    kasette.auszahlen(auszahlen);
                 }
             }
         }
         return false;
     }
 
-    int betrageingeben(){
-        int betrag = scan.nextInt();
+    private int betrageingeben(){
+        int betrag = SCAN.nextInt();
         while (betrag < 50 || betrag > 500 || betrag%5!=0){
             if (betrag < 50){
                 System.out.println("Betrag unter 50€!");
@@ -230,12 +237,12 @@ public class Geldautomat {
                 System.out.println("Es gibt keine ungeraden Scheine!");
             }
             System.out.println("Bitte gültigen Betrag eingeben!");
-            betrag = scan.nextInt();
+            betrag = SCAN.nextInt();
         }
         return betrag;
     }
 
-    void stückelung(int betrag, GeldKasette kasette,Geldauszahlung auszahlen){
+    private void stückelung(int betrag, GeldKasette kasette,Geldauszahlung auszahlen){
                         
         if (betrag > 300){
             betrag = naechsterSchein(auszahlen, GeldScheine.ONEHUNDRED, betrag);
@@ -246,7 +253,7 @@ public class Geldautomat {
         betrag = naechsterSchein(auszahlen, GeldScheine.FIVE, betrag);
     }
     
-    int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
+    private int naechsterSchein(Geldauszahlung auszahlung, GeldScheine schein, int betrag){
         while(betrag-schein.getValue()>=0){
             auszahlung.addScheine(schein, 1);
             betrag -= schein.getValue();
@@ -256,7 +263,7 @@ public class Geldautomat {
     
     public void beenden(){
         this.keepRunning=false;
-        this.scan.close();
+        this.SCAN.close();
     }
 
 }
