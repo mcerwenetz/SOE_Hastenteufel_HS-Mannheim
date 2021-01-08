@@ -1,4 +1,4 @@
-package Studienleistung2;
+package Studienleistung3;
 
 import org.junit.Rule;
 import org.junit.Test;
